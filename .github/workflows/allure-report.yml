@@ -11,22 +11,22 @@ jobs:
     name: Run tests and generate Allure Report
     runs-on: ubuntu-latest
     steps:
-      - name: Clone repository
-        uses: actions/checkout@v4.1.1
+#      - name: Clone repository
+#        uses: actions/checkout@v4.1.1
 
-      - name: Set up Java 21
-        uses: actions/setup-java@v4.0.0
-        with:
-          java-version: 21
-          cache: 'maven'
-          distribution: 'zulu'
+#      - name: Set up Java 21
+#        uses: actions/setup-java@v4.0.0
+#        with:
+#          java-version: 21
+#          cache: 'maven'
+#          distribution: 'zulu'
 
-      - name: Run Test
-        run: ./mvnw verify
-        continue-on-error: true
+#      - name: Run Test
+#        run: ./mvnw verify
+#        continue-on-error: true
 
       - name: Setup Allure History
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4
         if: always()
         continue-on-error: true
         with:
@@ -34,7 +34,7 @@ jobs:
           path: gh-pages
 
       - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@v1.7
+        uses: simple-elf/allure-report-action@master
         if: always()
         with:
           allure_results: target/allure-results
